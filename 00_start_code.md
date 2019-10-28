@@ -168,8 +168,9 @@ Documenation](https://support.rstudio.com/hc/en-us/articles/360004672913-Renderi
 
 ## Xaringan Slides
 
-[Quick Start Documentation](https://slides.yihui.name/xaringan/) [Docs
-from R Markdown Book by Yihui
+[Quick Start Documentation](https://slides.yihui.name/xaringan/)
+
+[Docs from R Markdown Book by Yihui
 Xie](https://bookdown.org/yihui/rmarkdown/xaringan.html)
 
 1.  `New File > R Markdown > From Template > Ninja Presentation`
@@ -179,6 +180,7 @@ Xie](https://bookdown.org/yihui/rmarkdown/xaringan.html)
 1.  `New File > R Markdown > From Template > Flex Dashboard`
 
 [Quick Start
-Documentation](https://rmarkdown.rstudio.com/flexdashboard/) [Docs from
-R Markdown book by Yihui
+Documentation](https://rmarkdown.rstudio.com/flexdashboard/)
+
+[Docs from R Markdown book by Yihui
 Xie](https://bookdown.org/yihui/rmarkdown/dashboards.html)
