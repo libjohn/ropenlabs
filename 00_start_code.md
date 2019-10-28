@@ -6,6 +6,8 @@ John Little
 Let’s use a few useful library packages
 
   - [tidyverse](https://www.tidyverse.org/)
+  - [PowerPoint Presentation with
+    RStudio](https://support.rstudio.com/hc/en-us/articles/360004672913-Rendering-PowerPoint-Presentations-with-RStudio)
   - [xaringan](https://github.com/yihui/xaringan) Slides
   - [flexdashboard](https://rmarkdown.rstudio.com/flexdashboard/)
 
@@ -67,7 +69,7 @@ library(babynames)
 
 ## Example code & objects
 
-### Hiar color barplot
+### Hair color barplot
 
 ``` r
 hair_color_barplot <- starwars %>%
@@ -85,7 +87,7 @@ hair_color_barplot
 
 ![](00_start_code_files/figure-gfm/unnamed-chunk-2-1.png)<!-- -->
 
-## BabyNames linegraph
+## Baby Names linegraph
 
 ``` r
 babynames_john_n <-
@@ -153,3 +155,30 @@ ggsave("images/babynames_prop.png", plot = babynames_john_prop)
 ```
 
     ## Saving 7 x 5 in image
+
+## PowerPoint Presentation
+
+[Quick Start
+Documenation](https://support.rstudio.com/hc/en-us/articles/360004672913-Rendering-PowerPoint-Presentations-with-RStudio)
+
+1.  `New File > R Markdown > Presentation > PowerPoint`
+
+![](https://support.rstudio.com/hc/article_attachments/360029572014/blobid6.png
+"New Markdown Presentation")
+
+## Xaringan Slides
+
+[Quick Start Documentation](https://slides.yihui.name/xaringan/) [Docs
+from R Markdown Book by Yihui
+Xie](https://bookdown.org/yihui/rmarkdown/xaringan.html)
+
+1.  `New File > R Markdown > From Template > Ninja Presentation`
+
+## Dashboard
+
+1.  `New File > R Markdown > From Template > Flex Dashboard`
+
+[Quick Start
+Documentation](https://rmarkdown.rstudio.com/flexdashboard/) [Docs from
+R Markdown book by Yihui
+Xie](https://bookdown.org/yihui/rmarkdown/dashboards.html)
