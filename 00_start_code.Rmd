@@ -1,0 +1,119 @@
+---
+title: "00 Start Here"
+author: "John Little"
+date: "`r Sys.Date()`"
+output: github_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+Let's use a few useful library packages
+
+- [tidyverse](https://www.tidyverse.org/)
+- [xaringan](https://github.com/yihui/xaringan)  Slides
+- [flexdashboard](https://rmarkdown.rstudio.com/flexdashboard/)
+
+
+```{r}
+
+
+if(!require(tidyverse)) {
+  install.packages(tidyverse)
+}
+library(tidyverse)
+
+if(!require(xaringan)) {
+  install.packages(xaringan)
+}
+library(xaringan)
+
+
+if(!require(flexdashboard)) {
+  install.packages("flexdashboard")
+}
+library(flexdashboard)
+
+if(!require(babynames)) {
+  install.packages("babynames")
+}
+library(babynames)
+
+```
+
+## Example code & objects
+
+### Hiar color barplot
+
+```{r}
+hair_color_barplot <- starwars %>%
+  ggplot(aes(fct_rev(fct_other(
+    fct_lump_min(fct_explicit_na(fct_infreq(hair_color), "NA"), 2), drop = "none"
+  )))) +
+  geom_bar() +
+  coord_flip() +
+  labs(title = "StarWars Character Hair Color",
+       subtitle = "Frequency",
+       x = "Hair Color", y = "",
+       caption = "Source:  dplyr::starwars")
+hair_color_barplot
+```
+
+## BabyNames linegraph
+
+```{r}
+babynames_john_n <-
+  ggplot() +
+  geom_line(data = babynames %>% filter(name == "John", sex == "M"),
+            aes(year, n),
+            color = "royalblue") +
+  geom_line(data = babynames %>% filter(name == "Isaac", sex == "M"),
+            aes(year, n),
+            color = "forestgreen") +
+  geom_vline(xintercept = 1967, color = "royalblue") +
+  geom_vline(xintercept = 1995, color = "forestgreen") +
+  labs(
+    title = "Frequency of two babynames",
+    subtitle = "Male Babies:  John & Isaac",
+    y = "",
+    caption = "Source:  library(babynames)"
+  )
+babynames_john_n
+```
+
+
+```{r}
+babynames_john_prop <-   ggplot() +
+  geom_line(
+    data = babynames %>% filter(name == "John", sex == "M"),
+    aes(year, prop),
+    color = "royalblue"
+  ) +
+  geom_line(
+    data = babynames %>% filter(name == "Isaac", sex == "M"),
+    aes(year, prop),
+    color = "forestgreen"
+  ) +
+  geom_vline(xintercept = 1967, color = "royalblue") +
+  geom_vline(xintercept = 1995, color = "forestgreen") +
+  labs(
+    title = "Proportion of two babynames",
+    subtitle = "Male babies:  John & Isaac",
+    y = "",
+    caption = "Source:  library(babynames)"
+  )
+babynames_john_prop
+```
+
+### Save the Objects
+
+
+
+```{r}
+ggsave("images/hair_color_barplot.png", plot = hair_color_barplot)
+ggsave("images/babynames_n.png", plot = babynames_john_n)
+ggsave("images/babynames_prop.png", plot = babynames_john_prop)
+
+```
+
