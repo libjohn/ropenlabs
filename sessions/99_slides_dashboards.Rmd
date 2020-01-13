@@ -1,5 +1,5 @@
 ---
-title: "00 Start Here"
+title: "Dashboards and slides demo"
 author: "John Little"
 date: "`r Sys.Date()`"
 output: github_document
