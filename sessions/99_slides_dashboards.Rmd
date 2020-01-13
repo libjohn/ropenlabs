@@ -112,6 +112,7 @@ babynames_john_prop
 
 
 ```{r}
+fs::dir_create("images")
 ggsave("images/hair_color_barplot.png", plot = hair_color_barplot)
 ggsave("images/babynames_n.png", plot = babynames_john_n)
 ggsave("images/babynames_prop.png", plot = babynames_john_prop)

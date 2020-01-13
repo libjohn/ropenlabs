@@ -139,6 +139,7 @@ babynames_john_prop
 ### Save the Objects
 
 ``` r
+fs::dir_create("images")
 ggsave("images/hair_color_barplot.png", plot = hair_color_barplot)
 ```
 
