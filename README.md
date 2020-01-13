@@ -53,4 +53,5 @@ series](https://rfun.library.duke.edu/portfolio/r_open_labs/)
 
 ## R Markdown, Dashboards & Slides
 
-Start with the [00\_start\_code](00_start_code.md) document
+Start with the [slides and dashboards](sessions/99_slides_dashboards.md)
+document

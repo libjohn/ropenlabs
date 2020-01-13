@@ -51,4 +51,4 @@ https://github.com/rstudio/master-the-tidyverse
 - RTP Ladies:  https://www.meetup.com/rladies-rtp/events/
 
 ## R Markdown, Dashboards & Slides
-Start with the [00_start_code](00_start_code.md) document
+Start with the [slides and dashboards](sessions/99_slides_dashboards.md) document
