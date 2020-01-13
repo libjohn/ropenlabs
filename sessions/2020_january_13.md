@@ -11,7 +11,6 @@
     
       - 000 PreClass
       - 00 Introduction
-      - 00 Reintroduction
       - 01 Visualization
 
 3.  Follow-up – Your Work outside of the ROpenLab
@@ -24,4 +23,5 @@
 
 4.  For February 03
     
+      - PDF – 00 Reintroduction
       - Working with Data - <https://rstudio.cloud/learn/primers/2>
