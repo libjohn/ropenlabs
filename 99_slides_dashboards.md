@@ -1,7 +1,7 @@
 00 Start Here
 ================
 John Little
-2019-10-28
+2020-01-13
 
 Let’s use a few useful library packages
 
@@ -21,14 +21,14 @@ if(!require(tidyverse)) {
 
     ## Loading required package: tidyverse
 
-    ## -- Attaching packages --------------------------------------------------------------------------- tidyverse 1.2.1 --
+    ## -- Attaching packages -------------------------------------------------------------------------------- tidyverse 1.3.0 --
 
-    ## v ggplot2 3.2.1     v purrr   0.3.3
-    ## v tibble  2.1.3     v dplyr   0.8.3
-    ## v tidyr   1.0.0     v stringr 1.4.0
-    ## v readr   1.3.1     v forcats 0.4.0
+    ## <U+2713> ggplot2 3.2.1     <U+2713> purrr   0.3.3
+    ## <U+2713> tibble  2.1.3     <U+2713> dplyr   0.8.3
+    ## <U+2713> tidyr   1.0.0     <U+2713> stringr 1.4.0
+    ## <U+2713> readr   1.3.1     <U+2713> forcats 0.4.0
 
-    ## -- Conflicts ------------------------------------------------------------------------------ tidyverse_conflicts() --
+    ## -- Conflicts ----------------------------------------------------------------------------------- tidyverse_conflicts() --
     ## x dplyr::filter() masks stats::filter()
     ## x dplyr::lag()    masks stats::lag()
 
@@ -85,7 +85,7 @@ hair_color_barplot <- starwars %>%
 hair_color_barplot
 ```
 
-![](00_start_code_files/figure-gfm/unnamed-chunk-2-1.png)<!-- -->
+![](99_slides_dashboards_files/figure-gfm/unnamed-chunk-2-1.png)<!-- -->
 
 ## Baby Names linegraph
 
@@ -109,7 +109,7 @@ babynames_john_n <-
 babynames_john_n
 ```
 
-![](00_start_code_files/figure-gfm/unnamed-chunk-3-1.png)<!-- -->
+![](99_slides_dashboards_files/figure-gfm/unnamed-chunk-3-1.png)<!-- -->
 
 ``` r
 babynames_john_prop <-   ggplot() +
@@ -134,7 +134,7 @@ babynames_john_prop <-   ggplot() +
 babynames_john_prop
 ```
 
-![](00_start_code_files/figure-gfm/unnamed-chunk-4-1.png)<!-- -->
+![](99_slides_dashboards_files/figure-gfm/unnamed-chunk-4-1.png)<!-- -->
 
 ### Save the Objects
 
