@@ -9,6 +9,14 @@ output: github_document
 knitr::opts_chunk$set(echo = TRUE)
 ```
 
+## February 03, 2020
+
+- [Questions DURING the session](https://is.gd/ropen_questions_jan13)
+- [GitHub](https://github.com/libjohn/ropenlabs)
+- [Master the Tidyverse](https://github.com/rstudio/master-the-tidyverse)
+- [R Primers](https://rstudio.cloud/learn/primers/)
+- [RStudio Conference 2020 - Materials for dataviz](https://github.com/rstudio-conf-2020/dataviz)
+
 ## January 13, 2020
 
 

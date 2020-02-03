@@ -1,7 +1,17 @@
 URLs for Class
 ================
 John Little
-2020-01-13
+2020-02-03
+
+## February 03, 2020
+
+  - [Questions DURING the session](https://is.gd/ropen_questions_jan13)
+  - [GitHub](https://github.com/libjohn/ropenlabs)
+  - [Master the
+    Tidyverse](https://github.com/rstudio/master-the-tidyverse)
+  - [R Primers](https://rstudio.cloud/learn/primers/)
+  - [RStudio Conference 2020 - Materials for
+    dataviz](https://github.com/rstudio-conf-2020/dataviz)
 
 ## January 13, 2020
 

@@ -21,7 +21,7 @@ A code and link repository supporting the [R Open Labs workshop series](https://
 ## Master the Tidyverse
 https://github.com/rstudio/master-the-tidyverse
 
-- 01 Visualize Data
+- 01 Visualize Data -- [Class notes](tree/master/notes/urls_for_class.md)
 - 02 Transform Data
 - 03 Tidy Data
 - 04 Import Data
