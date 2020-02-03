@@ -13,6 +13,12 @@ John Little
   - [RStudio Conference 2020 - Materials for
     dataviz](https://github.com/rstudio-conf-2020/dataviz)
 
+[Optional HOMEWORK - visualize Data section of the
+primers](https://rstudio.cloud/learn/primers/3)
+
+Next ggplot workshop, Tuesday, Feb 18, 2020.
+[Register](https://duke.libcal.com/event/6158216)
+
 ## January 13, 2020
 
 ### ROpenLabs
@@ -24,6 +30,9 @@ John Little
     Tidyverse](https://github.com/rstudio/master-the-tidyverse)
   - [R Primers](https://rstudio.cloud/learn/primers/)
   - [RStudio Education Resources](https://education.rstudio.com/learn/)
+
+[Optional HOMEWORK - working with data
+(dplyr)](https://rstudio.cloud/learn/primers/2)
 
 ### Rfun @ Duke
 
