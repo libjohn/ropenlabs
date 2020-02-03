@@ -15,7 +15,7 @@ series](https://rfun.library.duke.edu/portfolio/r_open_labs/)
 <https://github.com/rstudio/master-the-tidyverse>
 
   - 01 Visualize Data – [Class
-    notes](tree/master/notes/urls_for_class.md)
+    notes](https://github.com/libjohn/ropenlabs/tree/master/notes/urls_for_class.md)
   - 02 Transform Data
   - 03 Tidy Data
   - 04 Import Data
