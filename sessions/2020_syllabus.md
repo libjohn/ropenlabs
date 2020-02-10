@@ -35,7 +35,7 @@ Topics
     - import data  (Import Data Wizard)
     - simple Viz   (Example Bargraph)
 
-3.  FOLLOW-UP – Your work outside of the ROpenLab
+3.  **FOLLOW-UP** – Your work outside of the ROpenLab
     
       - R Primers
         
@@ -49,7 +49,7 @@ Topics
     
       - 01 Visuzlizaton
 
-2.  FOLLOW-UP – Your work outside of the ROpenLab
+2.  **FOLLOW-UP** – Your work outside of the ROpenLab
     
       - R Primers
         
@@ -60,7 +60,8 @@ Topics
   - 00 Reintroduction
   - 02 Transform Data (dplyr)
 
-FOLLOW-UP: [Working with data](https://rstudio.cloud/learn/primers/2)
+**FOLLOW-UP**: [Working with
+data](https://rstudio.cloud/learn/primers/2)
 
 ## Reshape: pivot & join (Feb 17)
 
@@ -76,7 +77,7 @@ tidyr::table2 %>% pivot_wider(names_from = "type", values_from = count)
 
 [join](https://github.com/libjohn/intro2r-code/blob/master/02_join-skim-eda.Rmd)
 
-FOLLOW-UP: [Tidy your data](https://rstudio.cloud/learn/primers/4)
+**FOLLOW-UP**: [Tidy your data](https://rstudio.cloud/learn/primers/4)
 
 ## Iterate & Functions (Feb 24)
 

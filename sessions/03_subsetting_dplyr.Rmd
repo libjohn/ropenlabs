@@ -95,7 +95,7 @@ starwars %>%
   filter(str_extract(name, "(?<=\\s)\\w+") == "Panaka" )
 ```
 
-YOUR TURN 2 & 3 -- 5 minutes
+YOUR TURN 2 & 3 -- 5 minutes  (`02-Transform-Data.Rmd`)
 
 
 ## Arrange
@@ -147,7 +147,7 @@ starwars %>%
        caption = "Source:  dplyr::starwars")
 ```
 
-
+YOUR TURN -- well NO.  There is no assignment code.
 
 ### Summarize
 
@@ -178,6 +178,8 @@ starwars %>%
   summarise(total = n()) %>% 
   summarise(grand_total = sum(total))
 ```
+
+YOUR TURN -- exercises 6 through 12.
 
 
 ## FOLLOW-UP  
