@@ -16,19 +16,17 @@ knitr::opts_chunk$set(
 <!-- badges: start -->
 <!-- badges: end -->
 
-A code and link repository supporting the [R Open Labs workshop series](https://rfun.library.duke.edu/portfolio/r_open_labs/)
+A code and link repository supporting the [R Open Labs workshop series](https://rfun.library.duke.edu/portfolio/r_open_labs/), sponsored by the [Center for Data & Visualization Sciences](https://library.duke.edu/data/)
 
 ## Master the Tidyverse
 https://github.com/rstudio/master-the-tidyverse
 
-- 01 Visualize Data -- [Class notes](https://github.com/libjohn/ropenlabs/tree/master/notes/urls_for_class.md)
-- 02 Transform Data
-- 03 Tidy Data
-- 04 Import Data
-- 05 Data Types
-- 06 Iteration
-- 07 Models
-- 08 List Columns
+- 01 Introduction
+- 02 Visualize Data 
+- 03 Transform Data
+- 04 Tidy Data
+- 05 Iteration
+- 06 Models
 
 ## Resources
 

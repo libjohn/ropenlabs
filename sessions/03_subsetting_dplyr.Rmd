@@ -25,7 +25,7 @@ starwars
 
 - select
 - filter
-- arange
+- arrange
 - mutate
 - count
 
