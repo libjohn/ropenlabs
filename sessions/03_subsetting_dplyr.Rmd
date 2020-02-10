@@ -1,0 +1,185 @@
+---
+title: "Subsetting data with dplyr"
+author: "John Little"
+subtitle:  "Section 03"
+date: "`r Sys.Date()`"
+output: html_notebook
+---
+
+## Load Library Package
+
+```{r message=FALSE, warning=FALSE}
+library(tidyverse)
+```
+
+
+## Import Data
+
+Starwars data set is an on-board dataset with `dplyr`
+
+```{r}
+starwars
+```
+
+## 5 Verbs
+
+- select
+- filter
+- arange
+- mutate
+- count
+
+    - summarize
+    - group_by
+    
+[slides](https://intro2r.library.duke.edu/slides/)
+
+### Select
+
+1. Select three variables:  name, height, mass
+2. Select Helpers:  all variables the end_with("_color")
+    
+```{r}
+starwars %>% 
+  select(name, height, mass)
+
+starwars %>% 
+  select(ends_with("_color"))     # select helpers
+  
+starwars %>% 
+  select_if(is.numeric)
+
+starwars %>% 
+  select(height, weight = mass, films, everything())
+
+starwars %>% 
+  select(4, 8:10, 1, everything())
+  
+```
+
+**YOUR TURN 1 -- 1 minute**
+
+[Exercises from Master the Tidyverse](https://github.com/rstudio/master-the-tidyverse)
+
+- 02-Transform-Data.Rmd
+
+### Filter
+
+```{r}
+starwars %>% 
+  filter(hair_color == "brown")
+
+starwars %>% 
+  filter(mass >= 500)
+
+starwars %>% 
+  filter(eye_color %in% c("orange", "blue"))
+
+starwars %>% 
+  filter(eye_color == "orange" |
+           eye_color == "blue")
+
+starwars %>% 
+  filter(eye_color == "brown",   #  &
+         hair_color == "brown")
+
+starwars %>% 
+  drop_na(mass)
+
+starwars %>% 
+  filter(is.na(mass))
+
+starwars %>% 
+#  filter(name == "Quarsh Panaka") %>% 
+#  filter(str_extract(name, "\\w+") == "Quarsh" ) %>% 
+  filter(str_extract(name, "(?<=\\s)\\w+") == "Panaka" )
+```
+
+YOUR TURN 2 & 3 -- 5 minutes
+
+
+## Arrange
+
+```{r}
+starwars %>% 
+  arrange(height)
+
+starwars %>% 
+  arrange(desc(height))
+
+starwars %>% 
+  arrange(desc(height), name)
+
+starwars %>% 
+  arrange(desc(height), desc(name))
+```
+
+YOUR  TURN 4 & 5 -- 4 minutes
+
+## Mutate
+
+
+```{r}
+starwars %>% 
+  select_if(is.numeric) %>% 
+  mutate(big_number = height + mass + birth_year)
+```
+
+
+```{r message=FALSE, warning=FALSE}
+starwars %>% 
+  filter(hair_color == "brown") %>% 
+  select(name, hair_color, birth_year, height, mass, gender) %>% 
+  ggplot(aes(birth_year, mass)) +
+  geom_point(aes(color = gender, size = mass)) +
+  geom_text(data = . %>% filter(gender == "male"), 
+            aes(label = name), position = "dodge", 
+            vjust = -1.2, hjust = 0.1) +
+  geom_label(data = . %>% filter(gender == "female"), 
+            aes(label = name, color = gender), 
+            alpha = 0.4,
+            position = "dodge", 
+            vjust = 1.5, hjust = 0.5) +  
+  xlim(0, 230) +
+  labs(title = "Star Wars characters with brown hair",
+       x = "Birth Year", y = "Mass",
+       color = "Gender", alpha = "", size = "Mass",
+       caption = "Source:  dplyr::starwars")
+```
+
+
+
+### Summarize
+
+- first let's explore `count`
+- then, `group_by`
+
+
+```{r}
+starwars %>% 
+  count(hair_color, sort = TRUE)
+```
+
+```{r}
+starwars %>% 
+  group_by(hair_color) %>% 
+  summarise(total = n()) %>% 
+  arrange(desc(total))
+
+starwars %>% 
+  group_by(hair_color, gender) %>% 
+  summarise(total = n(), 
+            min_height = min(height, na.rm = TRUE), 
+            max_height= max(height, na.rm = TRUE)) %>% 
+  arrange(desc(total))
+
+starwars %>% 
+  group_by(hair_color) %>% 
+  summarise(total = n()) %>% 
+  summarise(grand_total = sum(total))
+```
+
+
+## FOLLOW-UP  
+
+[Working with data](https://rstudio.cloud/learn/primers/2)
