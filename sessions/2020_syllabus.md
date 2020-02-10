@@ -1,7 +1,18 @@
+Traversing the Tidyverse
+================
+John Little
+2020-02-10
+
+An [ROpenLabs](https://rfun.library.duke.edu/portfolio/r_open_labs/)
+tiered training tutorial
 
 <!-- README.md is generated from README.Rmd. Please edit that file -->
 
-## January 13, 2020
+The following outline is based on Garrett Grolemund’s [*Matering the
+Tidyverse*](https://github.com/rstudio/master-the-tidyverse) workshop
+plus the [R Studio Primmers](https://rstudio.cloud/learn/primers).
+
+## Intro to R / RStudio / Tidyverse (January 13, 2020)
 
 1.  Download the Master the Tidyverse Repository from GitHub
     
@@ -24,7 +35,7 @@ Topics
     - import data  (Import Data Wizard)
     - simple Viz   (Example Bargraph)
 
-3.  Follow-up – Your work outside of the ROpenLab
+3.  FOLLOW-UP – Your work outside of the ROpenLab
     
       - R Primers
         
@@ -32,36 +43,26 @@ Topics
             <https://rstudio.cloud/learn/primers/1.1>
           - Visualizing Data - <https://rstudio.cloud/learn/primers/3>
 
-4.  For February 03
-    
-      - PDF – 00 Reintroduction
-      - Working with Data - <https://rstudio.cloud/learn/primers/2>
-
-## Feb 03
+## Visualization (Feb 03)
 
 1.  Slides (PDFs):
     
       - 01 Visuzlizaton
 
-2.  Follow-up – Your work outside of the ROpenLab
+2.  FOLLOW-UP – Your work outside of the ROpenLab
     
       - R Primers
         
           - Visualizing Data - <https://rstudio.cloud/learn/primers/3>
 
-3.  For Feb 10
-    
-      - 00 Reintroduction
-      - 02 Transform Data
-
-## Feb 10
+## Transform data, i.e. dplyr (Feb 10)
 
   - 00 Reintroduction
   - 02 Transform Data (dplyr)
 
 FOLLOW-UP: [Working with data](https://rstudio.cloud/learn/primers/2)
 
-## Feb 17
+## Reshape: pivot & join (Feb 17)
 
   - 03 Tidy: pivot & join
 
@@ -77,10 +78,10 @@ tidyr::table2 %>% pivot_wider(names_from = "type", values_from = count)
 
 FOLLOW-UP: [Tidy your data](https://rstudio.cloud/learn/primers/4)
 
-## Feb 24
+## Iterate & Functions (Feb 24)
 
   - Iteration / Functions: purrr::map
 
-## March 02
+## Models (March 02)
 
   - Models with Evan Wyse
