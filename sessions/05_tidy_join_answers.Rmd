@@ -14,6 +14,8 @@ output:
 library(tidyverse)
 ```
 
+
+
 ```{r}
 characters <- tribble(
   ~id, ~names, ~homeworld,
@@ -37,29 +39,16 @@ deep_space_intel <- tribble(
   250, "diamonds",
   245, "fruit and fresh water") %>% 
   mutate(customs_id = str_pad(customs_id, 3, pad = "0"))
-```
 
-```{r}
 deep_space_intel
-```
-
-
-Join the two tibbles (characters, and deep_space_intel)
-
-```{r}
-left_join(characters, deep_space_intel, 
-          by = c("id" = "customs_id"))
 ```
 
 What do people do on Tatooine?
 
 ```{r}
 left_join(characters, deep_space_intel, 
-          by = c("id" = "customs_id")) %>% 
-  filter(homeworld == "Tatooine")
+          by = c("id" = "customs_id"))
 ```
-
-Given the matches, join the matching data 
 
 
 ```{r}
@@ -68,12 +57,11 @@ inner_join(characters, deep_space_intel,
 ```
 
 
-What did not match?
-
 ```{r}
 anti_join(characters, deep_space_intel, 
           by = c("id" = "customs_id"))
 ```
+
 
 ## YOUR TURN 1
 
@@ -104,9 +92,11 @@ Join `starwars` with `favorability_popularity_rating`.  Subset to name and fav_r
 
 ```{r join-data}
 sw_joined <- starwars %>% 
-  left_join(_____________, by = "____") %>% 
-  select(____, _____)
+  left_join(favorability_popularity_rating, by = "name") %>% 
+  select(name, fav_rating)
 
+sw_joined %>% 
+  arrange(desc(fav_rating))
 ```
 
 
@@ -116,14 +106,6 @@ There are different types of joins (e.g. inner, left, right, full, etc.).  See t
 
 Experiment with other join types. In addition to the `left_join`, above, do at least one `inner_join` and one `anti_join`.  Try more if time allows.
 
-```{r}
-anti_join(_____)
-```
-
-
-```{r}
-inner_join(_____)
-```
 
 
 
