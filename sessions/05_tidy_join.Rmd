@@ -1,0 +1,120 @@
+---
+title: "EDA (Skim), Join, Visualize"
+author: "John Little"
+date: "`r Sys.Date()`"
+abstract: "This document is a tidyverse/dplyr tour using R/RStudio.  The https://rfun.library.duke.edu/intro2r/.  This document is covered by the CC BY-NC license:  https://creativecommons.org/licenses/by-nc/4.0/legalcode.\n"
+output:  
+  html_notebook:
+    toc: true
+---
+
+## Demonstration
+
+```{r}
+library(tidyverse)
+```
+
+
+
+```{r}
+characters <- tribble(
+  ~id, ~names, ~homeworld,
+  001, "Leia", "Alderaan",
+  002, "Luke", "Tatooine",
+  003, "Rey", "Jakku",
+  004, "Kylo", "Chandrila",
+  050, "Windu", "Haruun Kal",
+  100, "Han", "Corellia",
+  666, "Vader", "Tatooine") %>% 
+  mutate(id = str_pad(id, 3, pad = "0"))
+
+characters
+
+deep_space_intel <- tribble(
+  ~customs_id, ~intel,
+  002, "righteous farmboy",
+  666, "dumpster fire fanboy",
+  001, "royal fixer",
+  100, "smuggler",
+  250, "diamonds",
+  245, "fruit and fresh water") %>% 
+  mutate(customs_id = str_pad(customs_id, 3, pad = "0"))
+
+deep_space_intel
+```
+
+What do people do on Tatooine?
+
+```{r}
+left_join(characters, deep_space_intel, 
+          by = c("id" = "customs_id"))
+```
+
+
+```{r}
+inner_join(characters, deep_space_intel, 
+          by = c("id" = "customs_id"))
+```
+
+
+```{r}
+anti_join(characters, deep_space_intel, 
+          by = c("id" = "customs_id"))
+```
+
+
+## YOUR TURN 1
+
+### Data preparation
+
+- Star Wars survey data are from fivethirtyeight.com  
+
+    - https://github.com/fivethirtyeight/data/tree/master/star-wars-survey
+    - https://data.fivethirtyeight.com/
+    - Unless otherwise noted, five thirty eight data sets are available under the Creative Commons Attribution 4.0 International License, and the code is available under the MIT License.
+    - https://fivethirtyeight.com/features/americas-favorite-star-wars-movies-and-least-favorite-characters/
+
+I have transformed the *Five Thirty Eight* [data](https://github.com/fivethirtyeight/data/tree/master/star-wars-survey).  It's ready to merge with the other dataset.
+
+```{r}
+favorability_popularity_rating <- 
+  read_csv("../data/538_favorability_popularity.csv",
+           skip = 11)
+
+favorability_popularity_rating
+```
+
+
+### YOUR TURN NOW
+
+Join starwars with favorability_popularity_rating.  subset to name and fav_rating.  Sort in reverse numerical order of fav_rating
+
+
+```{r join-data}
+sw_joined <- starwars %>% 
+  left_join(favorability_popularity_rating, by = "name") %>% 
+  select(name, fav_rating)
+
+sw_joined %>% 
+  arrange(desc(fav_rating))
+```
+
+
+## YOUR TURN 2
+
+There are different types of joins (e.g. inner, left, right, full, etc.).  See the `dplyr::join` [documentation](http://dplyr.tidyverse.org/reference/join.html) for a more complete explanation. Note that the join key plays a critical role in the success rate of the join.  Joining on alphanumeric keys can be problematic due to complications such as diacritical marks, case sensitivity, and spaces. Ideally, match on consistent numeric keys. 
+
+Experiment with other join types. In addition to the `left_join`, above, do at least one `inner_join` and one `anti_join`.  Try more if time allows.
+
+```{r}
+anti_join()
+```
+
+
+```{r}
+inner_join()
+```
+
+
+
+
