@@ -3,64 +3,14 @@ title: "Tidy Data"
 output: html_notebook
 ---
 
-Adapted from Garrett Grolemund's [Master the tidyverse](https://github.com/rstudio/master-the-tidyverse).  CC BY RStudio.
+Adapted from Garrett Grolemund [Master the tidyverse](https://github.com/rstudio/master-the-tidyverse).  CC BY RStudio
 
 ```{r setup}
 library(tidyverse)
 library(babynames)
 
-# Toy data
-cases <- tribble(
-  ~Country, ~"2011", ~"2012", ~"2013",
-      "FR",    7000,    6900,    7000,
-      "DE",    5800,    6000,    6200,
-      "US",   15000,   14000,   13000
-)
-
-pollution <- tribble(
-       ~city, ~size, ~amount,
-  "New York", "large",      23,
-  "New York", "small",      14,
-    "London", "large",      22,
-    "London", "small",      16,
-   "Beijing", "large",     121,
-   "Beijing", "small",     121
-)
-
 # To avoid a distracting detail during class
 names(who) <- stringr::str_replace(names(who), "newrel", "new_rel")
-```
-
-
-## Examples
-
-### Pivot Longer
-
-```{r}
-cases
-
-```
-
-
-```{r}
-cases %>% 
-  pivot_longer(c("2011", "2012", "2013"),
-               names_to = "year",
-               values_to = "values")
-```
-
-
-### Pivot Wider
-
-```{r}
-pollution 
-```
-
-
-```{r}
-pollution %>% 
-  pivot_wider(names_from = size,
-              values_from = amount)
 ```
 
 
@@ -75,9 +25,9 @@ Use `pivot_longer` to reorganize `table4a` into three columns: **country**, **ye
 
 ```{r}
 table4a %>% 
-  pivot_longer(___,
-               names_to = "____",
-               values_to = "_____")
+  pivot_longer(2:3,                       #c("1999", "2000"),
+               names_to = "year",
+               values_to = "cases")
 ```
 
 ## Your Turn 3
@@ -90,8 +40,8 @@ Use `pivot_wider()` to reorganize `table2` into four columns: **country**, **yea
 
 ```{r}
 table2 %>% 
-  pivot_wider(names_from = ____,
-              values_from = _____)
+  pivot_wider(names_from = type,
+              values_from = count)
 ```
 
 ## Your Turn 5
@@ -100,8 +50,8 @@ Pivot longer the 5th through 60th columns of `who` into a key column: value colu
 
 ```{r}
 who %>% 
-  pivot_longer(____
-               names_to = "____") %>% 
+  pivot_longer(starts_with("new_"),            #5:60,
+               names_to = "codes") %>% 
   drop_na(value) %>% 
   select(-iso2, -iso3)
 
@@ -120,9 +70,9 @@ who %>%
                names_to = "codes") %>% 
   drop_na(value) %>% 
   select(-iso2, -iso3) %>% 
-  separate(codes, into = ________________, sep = " ") %>% 
+  separate(codes, into = c("new", "method", "sexage"), sep = "_") %>% 
   select(-new) %>% 
-  separate(sexage, into = _______________, sep = 1)
+  separate(sexage, into = c("gender","age"), sep = 1)
 ```
 
 ## Your Turn 7
@@ -132,12 +82,12 @@ Reshape the layout of this data. Calculate the percent of male (or female) child
 ```{r}
 babynames %>%
   group_by(year, sex) %>% 
-  summarise(n = _______) %>% 
-  pivot_wider(names_from = _____,
-              values_from = ____) %>% 
+  summarise(n = sum(n)) %>% 
+  pivot_wider(names_from = sex,
+              values_from = n) %>% 
   mutate(percent_female = F / (M + F) * 100) %>% 
   ggplot() +
-  geom_line(aes(x = ___, y = ____))
+  geom_line(aes(year, percent_female))
 
 ```
 
