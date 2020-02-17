@@ -27,6 +27,19 @@ pollution <- tribble(
    "Beijing", "small",     121
 )
 
+
+data_to_separate <- tribble(
+  ~combined_variable,
+  "2020_m_15",
+  "2020_f_20",
+  "2019_m_10",
+  "2020_f_15",
+  "2018_m_20",
+  "2018_f_10"
+)
+
+
+
 # To avoid a distracting detail during class
 names(who) <- stringr::str_replace(names(who), "newrel", "new_rel")
 ```
@@ -62,6 +75,15 @@ pollution %>%
   pivot_wider(names_from = size,
               values_from = amount)
 ```
+
+## Separate / Unite
+
+```{r}
+data_to_separate
+data_to_separate %>% 
+  separate(combined_variable, into = c("date", "gender", "value"), sep = "_")
+```
+
 
 
 
@@ -155,3 +177,6 @@ A data set is tidy if and only if:
 
 What is a variable and an observation may depend on your immediate goal.
 
+## Follow-up
+
+https://rstudio.cloud/learn/primers/4

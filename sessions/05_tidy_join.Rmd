@@ -29,13 +29,13 @@ characters <- tribble(
 characters
 
 deep_space_intel <- tribble(
-  ~customs_id, ~intel,
-  002, "righteous farmboy",
-  666, "dumpster fire fanboy",
-  001, "royal fixer",
-  100, "smuggler",
-  250, "diamonds",
-  245, "fruit and fresh water") %>% 
+  ~customs_id, ~intel, ~alias,
+  002, "righteous farmboy", "skywalker",
+  666, "dumpster fire fanboy", "darth",
+  001, "royal fixer", "Princess",
+  100, "smuggler", "Solo",
+  250, "diamonds", "jabba",
+  245, "fruit and fresh water", "fruitfly") %>% 
   mutate(customs_id = str_pad(customs_id, 3, pad = "0"))
 ```
 
