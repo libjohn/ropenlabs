@@ -41,7 +41,7 @@ Have a look at one file.  There are 8 lines of metadata that are, preferably, sk
 
 ```{r message=FALSE, warning=FALSE}
 my_tbl_noskip <- read_csv("../data/06_purrr_data/ggplot/attendance1.csv") 
-View(my_tbl_noskip)
+my_tbl_noskip
 
 my_tbl <- read_csv("../data/06_purrr_data/ggplot/attendance1.csv", skip = 8) 
 my_tbl
@@ -87,14 +87,14 @@ map_df(dir_ls("../data/06_purrr_data/ggplot"), read_csv, skip = 8)
 I have more files and directory names.  I can see more files, after moving up one directory, using the `recurse`  argument --part of the `dir_ls` function
 
 ```{r}
-dir_ls("../data/", recurse = TRUE)
+dir_ls("../data/06_purrr_data/", recurse = TRUE)
 ```
 
 Actually, I use two arguments -- `recurse` and `type` -- because I only want to see the files, not the directory names.  I can store that file list function in an object named `my_file_list`.  Then I can map the `read_csv` over the `my_file_list` atomic vector.  I still benefit by using the `skip` argument to the `read_csv` function.
 
 ```{r}
 my_file_list <- 
-  dir_ls("../data/", type = "file", recurse = TRUE)
+  dir_ls("../data/06_purrr_data/", type = "file", recurse = TRUE)
 my_file_list
 
 map_df(my_file_list, read_csv, skip = 8)   
