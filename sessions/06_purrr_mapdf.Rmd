@@ -1,0 +1,170 @@
+---
+title: "map df & purrr"
+author:  "John Little"
+date:  "`r Sys.Date()`"
+output: html_notebook
+---
+
+## Load library packages
+
+```{r message=FALSE, warning=FALSE}
+library(tidyverse)
+library(fs)
+```
+
+## list local files
+
+The `data` directory is a child of this R project directory.  The files and directory names are all relative to the project directory.
+
+```{r}
+dir_tree(here::here("data", "06_purrr_data"))
+```
+
+### Sidebar
+
+Some handy file management functions from the `fs` library package.
+
+```{r}
+path_real("../data/06_purrr_data/ggplot/attendance1.csv")
+path_dir("../data/06_purrr_data/attendance1.csv")
+path_file("../data/06_purrr_data/attendance1.csv")
+path_ext("../data/06_purrr_data/attendance1.csv")
+path_ext_remove(path_file("../data/06_purrr_data/attendance1.csv"))
+as_tibble(file_info("../data/06_purrr_data/attendance1.csv"))
+```
+
+
+## Setup
+
+Have a look at one file.  There are 8 lines of metadata that are, preferably, skipped.  The `read_csv` function has a `skip` argument.
+
+
+```{r message=FALSE, warning=FALSE}
+my_tbl_noskip <- read_csv("../data/06_purrr_data/ggplot/attendance1.csv") 
+View(my_tbl_noskip)
+
+my_tbl <- read_csv("../data/06_purrr_data/ggplot/attendance1.csv", skip = 8) 
+my_tbl
+```
+
+## Goal
+
+I want to import more than one file and make it part of one big tibble.  There is a useful function:  `fs::dir_map`.  The function takes no arguments and creates one tibble for each file.  This is good but I will need to post-process each tibble:  (1) remove metadata, (2) `bind_rows`
+
+
+```{r}
+dir_map("../data/06_purrr_data/ggplot/", read_csv)
+# dir_map("../data/06_purrr_data/ggplot/", read_csv)
+
+```
+
+The code-chunk above iterated over the three files listed below.
+
+```{r}
+dir_ls("../data/06_purrr_data/ggplot/")
+```
+
+## Map
+
+Map from the `purrr` package does many things.  Two very useful things include: (1) can iterate a function over rows of data frame; (2) can take arguments (e.g. `skip = 8`)
+
+```r
+map(<list>, <function>, ...<arguments>)
+```
+
+map functions return lists, but the results can be coerced into different data types:  charcater, logical, integer, double, tibble.  You will see: `map_chr`, `map_lgl`, `map_int`, `map_dbl`, `map_df` to name a few variants of the map function.
+
+In this case, I want my result to be a data frame, so I'll use `map_df`.  When troubleshooting, it's a good ideat to revert to the`map` function if one of the coercing map functions does not work.
+
+
+```{r}
+# bind_rows(dir_map("../data/06_purrr_data/", read_csv))
+map_df(dir_ls("../data/06_purrr_data/ggplot"), read_csv, skip = 8)
+```
+
+## More
+
+I have more files and directory names.  I can see more files, after moving up one directory, using the `recurse`  argument --part of the `dir_ls` function
+
+```{r}
+dir_ls("../data/", recurse = TRUE)
+```
+
+Actually, I use two arguments -- `recurse` and `type` -- because I only want to see the files, not the directory names.  I can store that file list function in an object named `my_file_list`.  Then I can map the `read_csv` over the `my_file_list` atomic vector.  I still benefit by using the `skip` argument to the `read_csv` function.
+
+```{r}
+my_file_list <- 
+  dir_ls("../data/", type = "file", recurse = TRUE)
+my_file_list
+
+map_df(my_file_list, read_csv, skip = 8)   
+```
+
+```{r}
+filelist <- as.list(dir_ls("../data/06_purrr_data/", type = "file", recurse = TRUE))
+filelist
+skipl <- list(8,8,8,8,8,8)
+skipl
+
+pmap_df(list(file = filelist, skip = skipl), read_csv)
+```
+
+
+## Map can evalute more than functions
+
+Map can evaluate a function or some other legal R statement.  Use the `~` to tell map what to evaluate.  Use `(.x)` to indicate the internal argument to map over.  By the way, now I have a "list column", `files2`
+
+
+```{r}
+my_file_list %>% 
+  enframe(name = "files") %>% 
+  # mutate("files2" = files) %>% 
+  mutate(files2 = map(files, ~ read_csv(.x, skip = 8)))
+```
+
+## Exand a list column
+
+using `unnest()`
+
+```{r}
+my_file_list %>% 
+  enframe() %>% 
+  rename("filename" = value) %>% 
+  select(-name) %>% 
+  mutate(my_tbl_df = map(filename, ~ read_csv(.x, skip = 8))) %>% 
+  unnest()
+```
+
+Same outcome done with more consice code.
+
+```{r}
+my_file_list %>% 
+  as_tibble(value = "filename") %>% 
+  mutate(my_tbl_df = map(value, ~ read_csv(.x, skip = 8))) %>% 
+  unnest()
+```
+
+## Further transformations
+
+List columns can get further evaluated by embeding custom transformations within `map`. 
+
+
+```{r}
+my_file_list %>% 
+  enframe(name = "file_name") %>% 
+  # mutate("files2" = files) %>% 
+  mutate(attend_tbl = map(file_name, ~ read_csv(.x, skip = 8))) %>% 
+  mutate(rows = map_int(attend_tbl, ~ nrow(.x))) %>% 
+  mutate(twice_as_big = map_dbl(attend_tbl, ~ nrow(.x) * 2))
+
+```
+
+
+## Follow-up
+
+Learn more 
+
+- [RStudio Primers on Iteration](https://rstudio.cloud/learn/primers/5)
+- [JennyBC on Purrrr](https://jennybc.github.io/purrr-tutorial/)
+
+
