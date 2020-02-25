@@ -1,0 +1,68 @@
+---
+title:  "map_ vectors"
+subtitle:  "everything is a vector. lists are vectors"
+author: "John Little"
+date: "`r Sys.Date()`"
+output: html_notebook
+---
+
+```{r message=FALSE, warning=FALSE}
+library(tidyverse)
+```
+
+a basic vector
+
+```{r}
+vec1 <- (4:8)
+vec1
+```
+
+## Introducing 
+
+>  `map(<vector>, <function>, <function args>`
+
+
+```{r}
+vec1 * 2                # standard vectorized math
+
+list(vec1[1] * 2,        #     What actually happens  (more or less)
+vec1[2] * 2,             # iterate
+vec1[3] * 2,             # iterate
+vec1[4] * 2,             # iterate
+vec1[5] * 2) %>%         # iterate
+as_vector()
+  
+vec1 %>%                # but you can map a function to a vector
+  map_dbl(`*`, 2)       # the function is multiplication (i.e. `*`, the argument is `2`).  
+                        # the various `map_` function return different data types.  e.g. dbl
+vec1 %>%               
+  map_dbl(~ .x * 2)     # alternative, map an "expression" which can be a function on `.x`
+```
+
+## I want is a data frame
+
+We all like data frames (because `mutate` is our **goto function** for creating new variables.)
+
+```{r}
+vec1 %>% 
+  map_dbl(~ .x * 2) %>% 
+  as_tibble()
+
+vec1 %>% 
+  map_dbl(~ .x * 2) %>% 
+  as_tibble() %>% 
+  transmute(bignum = value * 8)
+
+vec1 %>% 
+  map(~ .x * 2) %>% 
+  enframe() %>% 
+  unnest()
+
+vec1 %>% 
+  map_dbl(~ .x * 2) %>% 
+  enframe() %>% 
+  mutate(bignum = value * 8)
+
+```
+
+
